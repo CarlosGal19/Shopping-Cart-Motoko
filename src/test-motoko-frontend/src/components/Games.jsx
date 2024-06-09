@@ -3,13 +3,16 @@ import useAdd from '../hooks/useAdd.jsx';
 import { games } from '../mocks/data.js';
 
 export default function Games() {
-    const {myGames, setMyGames} = useAdd();
+    const { myGames, setMyGames } = useAdd();
 
     const handleClick = async (e) => {
+        console.log('HI')
+        const gameToAdd = games[e.target.id - 1];
+        gameToAdd.amount = 1;
+        console.log(gameToAdd)
         if (gameToAdd) {
             const updatedGames = await test_motoko_backend.updateGameList([...myGames], gameToAdd);
             setMyGames(updatedGames);
-            console.log(updatedGames);
         }
     }
 

@@ -6,6 +6,7 @@ export default function Cart() {
     const { myGames, setMyGames } = useAdd();
 
     const handleClick = (e) => {
+        const gameId = Number(e.target.id);
         const removeGameFromCart = async () => {
             const updatedGames = await test_motoko_backend.removeFromCart(myGames, gameId);
             setMyGames(updatedGames);
@@ -23,8 +24,8 @@ export default function Cart() {
                             <h2 className="text-lg font-semibold">{game.name}</h2>
                             <p className="text-gray-600">{Number(game.year)}</p>
                             <p className="text-gray-800 font-bold">Amount: {Number(game.amount)}</p>
-                            <button 
-                                id={Number(game.id)} 
+                            <button
+                                id={Number(game.id)}
                                 className='bg-red-700 font-bold px-6 py-3 rounded-lg text-white mt-2'
                                 onClick={handleClick}
                             >
