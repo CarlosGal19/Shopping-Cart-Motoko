@@ -53,9 +53,9 @@ actor {
     };
 
     public func removeFromCart(prevGames: [Game], gameId: Nat) : async [Game] {
-    return Array.filter<Game>(prevGames, func(game: Game): Bool {
-        game.id != gameId;
-    });
-}
+        return Array.filter<Game>(prevGames, func(game: Game): Bool {
+            game.id != gameId;
+        });
+    }
 
 }
