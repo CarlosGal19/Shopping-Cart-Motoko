@@ -10,12 +10,6 @@ actor {
         amount: Nat;
     };
 
-    stable var games: [Game] = [
-        { id = 1; name = "Game 1"; year = 2020; photo = "photo1.jpg"; amount = 0 },
-        { id = 2; name = "Game 2"; year = 2021; photo = "photo2.jpg"; amount = 0 },
-        { id = 3; name = "Game 3"; year = 2022; photo = "photo3.jpg"; amount = 0 }
-    ];
-
     public func updateGameList(prevGames: [Game], gameToAdd: Game): async [Game] {
         Debug.print("GameId: ");
         Debug.print(debug_show(gameToAdd.id));
