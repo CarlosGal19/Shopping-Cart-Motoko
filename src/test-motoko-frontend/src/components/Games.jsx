@@ -1,27 +1,16 @@
 import { test_motoko_backend } from 'declarations/test-motoko-backend';
-import { games } from '../mocks/data.js';
 import useAdd from '../hooks/useAdd.jsx';
+import { games } from '../mocks/data.js';
 
 export default function Games() {
+    const {myGames, setMyGames} = useAdd();
 
-    const { myGames, setMyGames } = useAdd();
- 
-    const handleClick = (e) => {
-        const gameId = e.target.id;
-        const gameAdd = { ...games[gameId - 1], amount: 1 }; // Add amount property
-        setMyGames((prevGames) => {
-            // Check if the game is already in the list
-            const existingGame = prevGames.find(game => game.id === gameAdd.id);
-            if (existingGame) {
-                // If the game is already in the list, update the amount
-                return prevGames.map(game => 
-                    game.id === gameAdd.id ? { ...game, amount: game.amount + 1 } : game
-                );
-            } else {
-                // If the game is not in the list, add it to the list
-                return [...prevGames, gameAdd];
-            }
-        });
+    const handleClick = async (e) => {
+        if (gameToAdd) {
+            const updatedGames = await test_motoko_backend.updateGameList([...myGames], gameToAdd);
+            setMyGames(updatedGames);
+            console.log(updatedGames);
+        }
     }
 
     return (
